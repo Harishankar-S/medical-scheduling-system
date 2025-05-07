@@ -6,8 +6,14 @@
 </head>
 <body>
 
-  <header>
-    <nav>
+  <header id="main-header"></header>
+
+<script>
+  const role = localStorage.getItem("userRole");
+  let links = '';
+
+  if (role === "admin") {
+    links = `
       <a href="home.html">Home</a>
       <a href="index.html">Login</a>
       <a href="dashboard.html">Dashboard</a>
@@ -15,8 +21,26 @@
       <a href="slots.html">Manage Slots</a>
       <a href="upcoming.html">Upcoming</a>
       <a href="doctors.html">Doctors</a>
+<<<<<<< Updated upstream
     </nav>
   </header>
+=======
+    `;
+  } else if (role === "patient") {
+    links = `
+      <a href="home.html">Home</a>
+      <a href="index.html">Login</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="book.html">Book Appointment</a>
+      <a href="doctors.html">Doctors</a>
+    `;
+  } else {
+    links = `<a href="index.html">Login</a>`;
+  }
+
+  document.getElementById("main-header").innerHTML = `<nav>${links}</nav>`;
+</script>
+>>>>>>> Stashed changes
 
   <h2>Upcoming Appointments</h2>
 
