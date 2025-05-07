@@ -5,22 +5,19 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="home.html">Home</a>
-      <a href="index.html">Login</a>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="book.html">Book Appointment</a>
-      <a href="slots.html">Manage Slots</a>
-      <a href="upcoming.html">Upcoming</a>
 
-
-    </nav>
-  </header>
   <h2>Login</h2>
   <form onsubmit="return handleLogin(event)">
     <input type="text" id="username" placeholder="Username" required><br>
     <input type="password" id="password" placeholder="Password" required><br>
+    
+    <label for="role">Login As:</label>
+    <select id="role" required>
+      <option value="">Select Role</option>
+      <option value="patient">Patient</option>
+      <option value="admin">Admin</option>
+    </select><br>
+
     <button type="submit">Login</button>
   </form>
 
