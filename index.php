@@ -7,19 +7,21 @@
 <body>
 
   <h2>Login</h2>
-  <form onsubmit="return handleLogin(event)">
-    <input type="text" id="username" placeholder="Username" required><br>
-    <input type="password" id="password" placeholder="Password" required><br>
+  <div class="container">
+    <form onsubmit="return handleLogin(event)">
+      <input type="text" id="username" placeholder="Username" required><br>
+      <input type="password" id="password" placeholder="Password" required><br>
     
-    <label for="role">Login As:</label>
-    <select id="role" required>
-      <option value="">Select Role</option>
-      <option value="patient">Patient</option>
-      <option value="admin">Admin</option>
-    </select><br>
+      <label for="role">Login As:</label>
+      <select id="role" required>
+        <option value="">Select Role</option>
+        <option value="patient">Patient</option>
+        <option value="admin">Admin</option>
+      </select><br>
 
-    <button type="submit">Login</button>
-  </form>
+      <button type="submit">Login</button>
+    </form>
+  </div>
 
   <script src="scripts/login.js"></script>
 </body>

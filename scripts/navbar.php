@@ -15,9 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (role === "admin") {
     links = `
         <a href="home.php">Home</a>
-        <a href="dashboard.php">Dashboard</a>
+        <a href="admin_dashboard.php">Dashboard</a>
         <a href="admin_slots.php">Manage Slots</a>
-        <a href="upcoming.php">Appointments</a>
         <a href="doctors.php">Doctors</a>
         <a href="#" onclick="document.getElementById('logoutForm').submit()">Logout</a>
         <form id="logoutForm" action="scripts/logout.php" method="POST" style="display:none;"></form>
@@ -25,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (role === "patient") {
     links = `
         <a href="home.php">Home</a>
-        <a href="dashboard.php">Dashboard</a>
+        <a href="upcoming.php">Appointments</a>
         <a href="book.php">Book Appointment</a>
         <a href="doctors.php">Doctors</a>
         <a href="#" onclick="document.getElementById('logoutForm').submit()">Logout</a>
