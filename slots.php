@@ -8,34 +8,7 @@
 
   <header id="main-header"></header>
 
-  <script>
-    const role = localStorage.getItem("userRole");
-    let links = '';
-
-    if (role === "admin") {
-      links = `
-        <a href="home.html">Home</a>
-        <a href="index.html">Login</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="book.html">Book Appointment</a>
-        <a href="slots.html">Manage Slots</a>
-        <a href="upcoming.html">Appointments</a>
-        <a href="doctors.html">Doctors</a>
-      `;
-    } else if (role === "patient") {
-      links = `
-        <a href="home.html">Home</a>
-        <a href="index.html">Login</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="book.html">Book Appointment</a>
-        <a href="doctors.html">Doctors</a>
-      `;
-    } else {
-      links = `<a href="index.html">Login</a>`;
-    }
-
-    document.getElementById("main-header").innerHTML = `<nav>${links}</nav>`;
-  </script>
+  <script src="scripts/navbar.php"></script>
 
   <h2>Manage Time Slots</h2>
 

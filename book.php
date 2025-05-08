@@ -1,4 +1,3 @@
-<!-- book.php -->
 <?php
 session_start();
 ?>
