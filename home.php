@@ -17,7 +17,7 @@
         links = `
           <a href="home.html">Home</a>
           <a href="index.html">Login</a>
-          <a href="book.html">Book Appointment</a>
+          <a href="book.php">Book Appointment</a>
           <a href="slots.html">Manage Slots</a>
           <a href="upcoming.html">Appointments</a>
           <a href="doctors.html">Doctors</a>
@@ -27,7 +27,7 @@
           <a href="home.html">Home</a>
           <a href="index.html">Login</a>
           <a href="dashboard.html">Dashboard</a>
-          <a href="book.html">Book Appointment</a>
+          <a href="book.php">Book Appointment</a>
           <a href="doctors.html">Doctors</a>
         `;
       } else {
@@ -41,6 +41,10 @@
   <h2>Welcome to the Medical Appointment Scheduler</h2>
   <p>This simple website allows patients to book appointments, view their schedule, and manage availability of time slots.</p>
   <p>Use the links above to navigate through the system.</p>
+
+  <form action="scripts/logout.php" method="POST">
+    <button type="submit">Logout</button>
+  </form>
 
 </body>
 </html>

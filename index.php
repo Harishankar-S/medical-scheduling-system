@@ -21,6 +21,6 @@
     <button type="submit">Login</button>
   </form>
 
-  <script src="script.js"></script>
+  <script src="scripts/login.js"></script>
 </body>
 </html>
