@@ -20,7 +20,3 @@ function handleLogin(event) {
     }
   });
 }
-
-function getUserRole() {
-  return localStorage.getItem("userRole");
-}

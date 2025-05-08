@@ -1,22 +1,31 @@
 <?php
-ob_start(); // buffer output
+ob_start();
 session_start();
-header("Content-Type: application/json"); // ensure JSON response
+header("Content-Type: application/json");
 
 $username = $_POST['username'] ?? '';
 $password = $_POST['password'] ?? '';
 $role = $_POST['role'] ?? '';
 
-if (
-    ($username === 'admin' && $password === 'admin' && $role === 'admin') ||
-    ($username === 'patient' && $password === 'patient' && $role === 'patient')
-) {
+$validLogin = false;
+
+if ($role === 'admin' && $username === 'admin' && $password === 'admin') {
     $_SESSION['username'] = $username;
     $_SESSION['role'] = $role;
+    $validLogin = true;
+} elseif ($role === 'patient' && $username === 'patient' && $password === 'patient') {
+    $_SESSION['username'] = $username;
+    $_SESSION['role'] = $role;
+    
+    $_SESSION['patient_id'] = 1;
+    $validLogin = true;
+}
+
+if ($validLogin) {
     echo json_encode(['success' => true]);
 } else {
-    $_SESSION['patient_id'] = 1;
     echo json_encode(['success' => false, 'message' => 'Invalid credentials']);
 }
+
 ob_end_flush();
 ?>

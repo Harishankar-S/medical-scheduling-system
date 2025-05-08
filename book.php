@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'patient') {
+    header("Location: index.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +41,6 @@ session_start();
     <button type="submit">Confirm Appointment</button>
   </form>
 
-  <script src="./scripts/book.js"></script>
+  <script src="./scripts/book_appointment.js"></script>
 </body>
 </html>

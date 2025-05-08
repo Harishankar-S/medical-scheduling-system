@@ -1,18 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const header = document.getElementById("main-header");
-    const role = localStorage.getItem("userRole");
-
-    let links = '';
-    if (role === "admin") {
-    links = `<a href="home.php">Home</a> <a href="book.php">Book</a> <a href="slots.php">Slots</a>`;
-    } else if (role === "patient") {
-    links = `<a href="home.php">Home</a> <a href="book.php">Book</a>`;
-    } else {
-    links = `<a href="index.php">Login</a>`;
-    }
-
-    header.innerHTML = `<nav>${links}</nav>`;
-
     const doctorSelect = document.getElementById("doctorSelect");
     const dateInput = document.getElementById("dateInput");
 

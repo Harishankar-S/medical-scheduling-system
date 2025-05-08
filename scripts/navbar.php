@@ -16,8 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     links = `
         <a href="home.php">Home</a>
         <a href="dashboard.php">Dashboard</a>
-        <a href="book.php">Book Appointment</a>
-        <a href="slots.php">Manage Slots</a>
+        <a href="admin_slots.php">Manage Slots</a>
         <a href="upcoming.php">Appointments</a>
         <a href="doctors.php">Doctors</a>
         <a href="#" onclick="document.getElementById('logoutForm').submit()">Logout</a>

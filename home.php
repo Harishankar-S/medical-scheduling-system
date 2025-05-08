@@ -14,9 +14,5 @@
   <p>This simple website allows patients to book appointments, view their schedule, and manage availability of time slots.</p>
   <p>Use the links above to navigate through the system.</p>
 
-  <form action="scripts/logout.php" method="POST">
-    <button type="submit">Logout</button>
-  </form>
-
 </body>
 </html>
