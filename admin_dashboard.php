@@ -23,6 +23,6 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     <!-- More rows will go here -->
   </table>
   <a href="book.php">Book Appointment</a>
-  <a href="slots.php">Manage Slots</a>
+  <a href="admin_slots.php">Manage Slots</a>
 </body>
 </html>
