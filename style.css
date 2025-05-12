@@ -1,0 +1,137 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 40px;
+  background-color: #f5f5f5;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+/* General container for form or table blocks */
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  max-width: 400px;
+}
+
+/* Inputs and buttons across the site */
+input, select, button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+/* Table styling (apply this where tables are used) */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+/* Links */
+a {
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 10px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Header / Navbar */
+header {
+  background-color: #343a40;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+nav a {
+  color: #fff;
+  margin-right: 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.appointment-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.appointment-table th, .appointment-table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.appointment-table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.cancel-btn {
+  width: auto;
+  background-color: crimson;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.cancel-btn:hover {
+  background-color: darkred;
+}
+
+.status-scheduled {
+  background-color: #e6f7ff; /* light blue */
+}
+.status-cancelled {
+  background-color: #ffe6e6; /* light red */
+}
+.status-no-show {
+  background-color: #fff3cd; /* light yellow */
+}
+.status-attended {
+  background-color: #e6ffe6; /* light green */
+}
+.status-unknown {
+  background-color: #f0f0f0; /* light gray */
+}
