@@ -36,6 +36,8 @@ if (!empty($availability)) {
 
 if ($sort === 'appointments') {
   $query .= " ORDER BY appointment_count DESC";
+} elseif ($sort === 'name') {
+  $query .= " ORDER BY d.name ASC";
 }
 
 $stmt = $conn->prepare($query);
@@ -48,15 +50,29 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 echo "<table class='appointment-table'>";
-echo "<tr><th>Name</th><th>Specialization</th><th>Availability</th><th>Appointments</th></tr>";
+echo "<tr>
+    <th>Name</th>
+    <th>Specialization</th>
+    <th>Availability</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Appointments</th>
+    <th>Book</th>
+    </tr>";
 
 while ($row = $result->fetch_assoc()) {
-  echo "<tr>
-          <td>" . htmlspecialchars($row['name']) . "</td>
-          <td>" . htmlspecialchars($row['specialization']) . "</td>
-          <td>" . htmlspecialchars($row['availability']) . "</td>
-          <td>" . $row['appointment_count'] . "</td>
-        </tr>";
+    echo "<tr>
+        <td>" . htmlspecialchars($row['name']) . "</td>
+        <td>" . htmlspecialchars($row['specialization']) . "</td>
+        <td>" . htmlspecialchars($row['availability']) . "</td>
+        <td>" . htmlspecialchars($row['phone_number']) . "</td>
+        <td>" . htmlspecialchars($row['email']) . "</td>
+        <td>" . $row['appointment_count'] . "</td>
+        <td>
+            <a href='book.php?doctor_id=" . $row['doctor_id'] . "' class='book-btn'>Book Now</a>
+        </td>
+      </tr>";
+
 }
 
 echo "</table>";

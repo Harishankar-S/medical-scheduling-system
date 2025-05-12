@@ -1,105 +1,77 @@
+<?php
+session_start();
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header("Location: index.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Slot Manager</title>
+  <title>Manage Slots</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <header id="main-header"></header>
-
   <script src="scripts/navbar.php"></script>
 
-  <h2>Manage Time Slots</h2>
+  <h2>Manage Doctor Slots</h2>
 
-  <div id="slot-filters" style="margin-bottom: 20px;">
-    <label for="drspecial">Doctor specialization</label>
-    <select name="drspecial" id="drspecial">
-      <option value="All">All</option>
-      <option value="Orthopedics">Orthopedics</option>
-      <option value="Nephrology">Nephrology</option>
-      <option value="Psychiatry">Psychiatry</option>
-      <option value="Neurology">Neurology</option>
-      <option value="Pulmonology">Pulmonology</option>
-      <option value="Dermatology">Dermatology</option>
-      <option value="Oncology">Oncology</option>
-      <option value="Gastroenterology">Gastroenterology</option>
-      <option value="Pediatrics">Pediatrics</option>
-      <option value="Rheumatology">Rheumatology</option>
-      <option value="ENT">ENT</option>
-      <option value="Ophthalmology">Ophthalmology</option>
-      <option value="Urology">Urology</option>
-      <option value="Endocrinology">Endocrinology</option>
-      <option value="Cardiology">Cardiology</option>
-    </select>
-
-    <label for="doctor">Doctor:</label>
-    <select id="doctor" onchange="applySlotFilters()">
-      <option value="">All</option>
-      <option value="Dr. Amy Chen">Dr. Amy Chen</option>
-      <option value="Dr. Raj Patel">Dr. Raj Patel</option>
-    </select>
-
-    <label for="slot-date">Date:</label>
-    <input type="date" id="slot-date" onchange="applySlotFilters()">
-
-    <button onclick="resetSlotFilters()">Reset</button>
+  <div class="slot-nav">
+    <button id="showAddBtn">Add Slot</button>
+    <button id="showRemoveBtn">Remove Slot</button>
   </div>
 
-  <!-- SLOT TABLE -->
-  <table id="slot-table">
+  <div id="addSlotSection" style="display: block;">
+    <?php include('admin_slots_add.php'); ?>
+  </div>
+
+  <div id="removeSlotSection" style="display: none;">
+    <?php include('admin_slots_remove.php'); ?>
+  </div>
+
+  <h3>Upcoming Available Slots</h3>
+  <?php
+  $conn = new mysqli("localhost", "root", "", "cs366");
+  $result = $conn->query("SELECT s.slot_id, d.name AS doctor_name, s.appointment_date, s.appointment_time 
+                          FROM Slots s 
+                          JOIN Doctors d ON s.doctor_id = d.doctor_id 
+                          WHERE s.is_available = 1 
+                          ORDER BY s.appointment_date, s.appointment_time 
+                          LIMIT 15");
+  ?>
+
+  <table class="slot-table">
     <thead>
       <tr>
-        <th>Doctor</th><th>Specialization</th><th>Date</th><th>Time</th><th>Available</th>
+        <th>Doctor</th>
+        <th>Date</th>
+        <th>Time</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Dr. Amy Chen</td><td>Cardiology</td><td>2025-05-15</td><td>09:00</td><td>Yes</td>
-      </tr>
-      <tr>
-        <td>Dr. Raj Patel</td><td>Dermatology</td><td>2025-05-15</td><td>09:30</td><td>No</td>
-      </tr>
-      <tr>
-        <td>Dr. Amy Chen</td><td>Cardiology</td><td>2025-05-16</td><td>10:00</td><td>Yes</td>
-      </tr>
-      <tr>
-        <td>Dr. Raj Patel</td><td>Dermatology</td><td>2025-05-15</td><td>10:15</td><td>Yes</td>
-      </tr>
+      <?php while ($row = $result->fetch_assoc()): ?>
+        <tr>
+          <td><?= htmlspecialchars($row['doctor_name']) ?></td>
+          <td><?= htmlspecialchars($row['appointment_date']) ?></td>
+          <td><?= htmlspecialchars($row['appointment_time']) ?></td>
+        </tr>
+      <?php endwhile; ?>
     </tbody>
   </table>
+  <?php $conn->close(); ?>
 
   <script>
-    function applySlotFilters() {
-      const specialization = document.getElementById("specialization").value.toLowerCase();
-      const doctor = document.getElementById("doctor").value.toLowerCase();
-      const date = document.getElementById("slot-date").value;
+    document.getElementById('showAddBtn').addEventListener('click', () => {
+      document.getElementById('addSlotSection').style.display = 'block';
+      document.getElementById('removeSlotSection').style.display = 'none';
+    });
 
-      const rows = document.querySelectorAll("#slot-table tbody tr");
-
-      rows.forEach(row => {
-        const docName = row.cells[0].textContent.toLowerCase();
-        const spec = row.cells[1].textContent.toLowerCase();
-        const slotDate = row.cells[2].textContent;
-
-        let visible = true;
-
-        if (specialization && spec !== specialization) visible = false;
-        if (doctor && docName !== doctor) visible = false;
-        if (date && slotDate !== date) visible = false;
-
-        row.style.display = visible ? "" : "none";
-      });
-    }
-
-    function resetSlotFilters() {
-      document.getElementById("specialization").value = "";
-      document.getElementById("doctor").value = "";
-      document.getElementById("slot-date").value = "";
-
-      applySlotFilters();
-    }
+    document.getElementById('showRemoveBtn').addEventListener('click', () => {
+      document.getElementById('addSlotSection').style.display = 'none';
+      document.getElementById('removeSlotSection').style.display = 'block';
+    });
   </script>
-
 </body>
 </html>

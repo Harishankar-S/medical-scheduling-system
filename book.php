@@ -25,8 +25,10 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'patient') {
         <?php
         $conn = new mysqli("localhost", "root", "", "cs366");
         $result = $conn->query("SELECT doctor_id, name FROM Doctors");
+        $preselectedDoctor = isset($_GET['doctor_id']) ? intval($_GET['doctor_id']) : null;
         while ($row = $result->fetch_assoc()) {
-          echo "<option value='{$row['doctor_id']}'>{$row['name']}</option>";
+          $selected = $row['doctor_id'] == $preselectedDoctor ? 'selected' : '';
+          echo "<option value='{$row['doctor_id']}' $selected>{$row['name']}</option>";
         }
         $conn->close();
         ?>
